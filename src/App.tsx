@@ -1,5 +1,6 @@
 const STEAM_URL = "https://store.steampowered.com/app/2282790/RIFTSTORM/";
 const EMAIL_URL = "mailto:annaufalfathi@gmail.com";
+const RIFTSTORM_IMG = `${import.meta.env.BASE_URL}assets/abea2.png`;
 
 function ButtonLink({
   children,
@@ -85,7 +86,7 @@ export default function App() {
                 </div>
               </div>
               <div className="project-image" aria-hidden="true">
-                <img src="/assets/abea2.png" alt="" />
+                <img src={RIFTSTORM_IMG} alt="" />
               </div>
             </article>
 
