@@ -1,5 +1,7 @@
 import RIFTSTORM_IMG from './assets/abea2.png';
+import GUILD_IMG from './assets/guild_chronicles.png';
 const STEAM_URL = "https://store.steampowered.com/app/2282790/RIFTSTORM/";
+const GUILD_URL = "https://annaufalfathi.itch.io/guild-chronicles";
 const EMAIL_URL = "mailto:annaufalfathi@gmail.com";
 
 
@@ -45,8 +47,7 @@ export default function App() {
             <h1 id="hero-title">Fathi Annaufal</h1>
             <p className="eyebrow">Game Designer &amp; Developer</p>
             <p className="hero-copy">
-              I design and build engaging, systems-driven games. From prototyping core mechanics to
-              engineering modular architecture in Unity, I focus on creating polished,
+              I design and build engaging, systems-driven games. Create a prototyping core mechanics and I focus on creating polished,
               player-centric experiences.
             </p>
             <div className="button-row">
@@ -60,9 +61,9 @@ export default function App() {
 
         <section className="section projects" id="work" aria-labelledby="projects-title">
           <div className="content projects-header">
-            <h2 id="projects-title">Selected Projects</h2>
+            <h2 id="projects-title">My Projects</h2>
             <p>
-              A few examples of how I design systems, build prototypes, and ship player-facing
+              A few examples of how I design systems and ship player-facing
               experiences.
             </p>
           </div>
@@ -94,7 +95,7 @@ export default function App() {
             <article className="project-card project-card--simple">
               <div className="project-heading">
                 <h3>Semi-Idle Mobile Game</h3>
-                <p>Game Designer | Unity | Live-Ops</p>
+                <p>Game Designer | Unity</p>
               </div>
               <p>
                 Currently designing session-capped minigames and retention-focused core loops for a
@@ -102,6 +103,28 @@ export default function App() {
                 engineering to ensure the game has a fun and engaging experience based on narrative
                 pillars.
               </p>
+            </article>
+
+                        <article className="project-card project-card--featured">
+              <div className="project-details">
+                <div className="project-heading">
+                  <h3>Guild Chronicles</h3>
+                  <p>Game Designer | Programmer | Personal Project</p>
+                </div>
+                <p> 
+                  Puts every choice in your hands.
+                  Your decisions won’t just change the story. 
+                  they’ll shape the very lives of the NPCs you meet, creating a deeply personal and unforgettable experience.
+                </p>
+                <div className="project-action">
+                  <ButtonLink href={GUILD_URL} external>
+                    View project
+                  </ButtonLink>
+                </div>
+              </div>
+              <div className="project-image" aria-hidden="true">
+                <img src={GUILD_IMG} alt="Guild Chronicle Gameplay" />
+              </div>
             </article>
           </div>
         </section>
