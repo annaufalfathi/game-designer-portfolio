@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from "react";
 import RIFTSTORM_IMG from './assets/abea2.png';
 import GUILD_IMG from './assets/guild_chronicles.png';
 const STEAM_URL = "https://store.steampowered.com/app/2282790/RIFTSTORM/";
@@ -24,6 +25,32 @@ function ButtonLink({
     >
       {children}
     </a>
+  );
+}
+
+function FadeIn({ children }: { children: React.ReactNode }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const domRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (domRef.current) observer.observe(domRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={domRef} className={`scroll-fade-up ${isVisible ? "is-visible" : ""}`}>
+      {children}
+    </div>
   );
 }
 
@@ -69,43 +96,48 @@ export default function App() {
           </div>
 
           <div className="content project-list">
-            <article className="project-card project-card--featured">
-              <div className="project-details">
+            <FadeIn>
+              <article className="project-card project-card--featured">
+                <div className="project-details">
+                  <div className="project-heading">
+                    <h3>RIFTSTORM</h3>
+                    <p>System Game Designer | Co-op Looter-Shooter | Action RPG</p>
+                  </div>
+                  <p>
+                    I contributed to the design of RIFTSTORM, a co-op PvE extraction looter-shooter
+                    currently in Early Access on Steam. Focused on engaging combat mechanics,
+                    rogue-lite progression loops, and dynamic build-crafting systems that allow
+                    players to shape their playstyle mid-mission.
+                  </p>
+                  <div className="project-action">
+                    <ButtonLink href={STEAM_URL} external>
+                      View on Steam
+                    </ButtonLink>
+                  </div>
+                </div>
+                <div className="project-image" aria-hidden="true">
+                  <img src={RIFTSTORM_IMG} alt="RIFTSTORM Gameplay" />
+                </div>
+              </article>
+            </FadeIn>
+
+            <FadeIn>
+              <article className="project-card project-card--simple">
                 <div className="project-heading">
-                  <h3>RIFTSTORM</h3>
-                  <p>System Game Designer | Co-op Looter-Shooter | Action RPG</p>
+                  <h3>Semi-Idle Mobile Game</h3>
+                  <p>Game Designer | Unity</p>
                 </div>
                 <p>
-                  I contributed to the design of RIFTSTORM, a co-op PvE extraction looter-shooter
-                  currently in Early Access on Steam. Focused on engaging combat mechanics,
-                  rogue-lite progression loops, and dynamic build-crafting systems that allow
-                  players to shape their playstyle mid-mission.
+                  Currently designing session-capped minigames and retention-focused core loops for a
+                  semi-idle mobile experience. Creating player journeys and working together with
+                  engineering to ensure the game has a fun and engaging experience based on narrative
+                  pillars.
                 </p>
-                <div className="project-action">
-                  <ButtonLink href={STEAM_URL} external>
-                    View on Steam
-                  </ButtonLink>
-                </div>
-              </div>
-              <div className="project-image" aria-hidden="true">
-                <img src={RIFTSTORM_IMG} alt="RIFTSTORM Gameplay" />
-              </div>
-            </article>
+              </article>
+            </FadeIn>
 
-            <article className="project-card project-card--simple">
-              <div className="project-heading">
-                <h3>Semi-Idle Mobile Game</h3>
-                <p>Game Designer | Unity</p>
-              </div>
-              <p>
-                Currently designing session-capped minigames and retention-focused core loops for a
-                semi-idle mobile experience. Creating player journeys and working together with
-                engineering to ensure the game has a fun and engaging experience based on narrative
-                pillars.
-              </p>
-            </article>
-
-                        <article className="project-card project-card--featured">
+            <FadeIn>
+              <article className="project-card project-card--featured">
               <div className="project-details">
                 <div className="project-heading">
                   <h3>Guild Chronicles</h3>
@@ -125,7 +157,8 @@ export default function App() {
               <div className="project-image" aria-hidden="true">
                 <img src={GUILD_IMG} alt="Guild Chronicle Gameplay" />
               </div>
-            </article>
+              </article>
+            </FadeIn>
           </div>
         </section>
 
