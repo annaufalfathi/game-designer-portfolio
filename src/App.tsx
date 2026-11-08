@@ -1,6 +1,6 @@
 const STEAM_URL = "https://store.steampowered.com/app/2282790/RIFTSTORM/";
 const EMAIL_URL = "mailto:annaufalfathi@gmail.com";
-const RIFTSTORM_IMG = `${import.meta.env.BASE_URL}assets/abea2.png`;
+const RIFTSTORM_IMG = `./assets/abea2.png`;
 
 function ButtonLink({
   children,
